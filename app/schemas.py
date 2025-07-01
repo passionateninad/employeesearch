@@ -6,7 +6,7 @@ class EmployeeOut(BaseModel):
     last_name: Optional[str]
     email: Optional[str]
     phone: Optional[str]
-    status: str
+    status: Optional[str]
     department: Optional[str]
     position: Optional[str]
     location: Optional[str]

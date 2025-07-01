@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -15,8 +15,15 @@ class Employee(Base):
     last_name = Column(String)
     email = Column(String)
     phone = Column(String)
-    status = Column(String)  # 'active', 'not_started', 'terminated'
+    status = Column(String)  # e.g., 'active', 'not_started', 'terminated'
     department = Column(String)
     position = Column(String)
     location = Column(String)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
+
+class ColumnConfig(Base):
+    __tablename__ = 'column_config'
+    id = Column(Integer, primary_key=True)
+    organization_id = Column(Integer, ForeignKey("organizations.id"))
+    column_name = Column(String)
+    is_visible = Column(Boolean, default=True)

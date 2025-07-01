@@ -1,11 +1,12 @@
 import random
 import string
-from app.database import SessionLocal
-from app.models import Base, Organization, Employee
-from app.database import engine
+from app.models import Base, Organization, Employee, ColumnConfig
+from app.database import engine, SessionLocal
 
-# Initialize DB
+# Initialize DB schema
 Base.metadata.create_all(bind=engine)
+
+# Start DB session
 db = SessionLocal()
 
 # Create or get organizations
@@ -18,6 +19,20 @@ for org in orgs:
         db.add(org)
 db.commit()
 
+# Seed column configs
+default_columns = {
+    1: ["first_name", "last_name", "email", "phone", "status", "department", "position", "location"],
+    2: ["first_name", "status", "department"]
+}
+
+for org_id, columns in default_columns.items():
+    for col in columns:
+        exists = db.query(ColumnConfig).filter_by(organization_id=org_id, column_name=col).first()
+        if not exists:
+            db.add(ColumnConfig(organization_id=org_id, column_name=col, is_visible=True))
+db.commit()
+
+# Sample employee seed
 first_names = ["Alice", "Bob", "Carol", "Dave", "Eva", "Frank", "Grace", "Heidi"]
 last_names = ["Smith", "Johnson", "Brown", "Taylor", "Anderson", "Thomas", "Jackson"]
 statuses = ["active", "not_started", "terminated"]
@@ -25,7 +40,7 @@ departments = ["Engineering", "HR", "Marketing", "Finance"]
 positions = ["Manager", "Engineer", "Intern", "Director"]
 locations = ["New York", "London", "Berlin", "Bangalore"]
 
-# Bulk insert 10,000 random employees
+# Bulk insert 10,000 employees
 BATCH_SIZE = 1000
 total = 10000
 
@@ -53,4 +68,4 @@ for batch in range(0, total, BATCH_SIZE):
     print(f"Inserted {batch + BATCH_SIZE} records...")
 
 db.close()
-print("✅ Done seeding 10,000 employees.")
+print("Done seeding 10,000 employees.")
