@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "801dcf12-d302-4e09-a518-e7e97210c8c0",
+		"name": "Employee Search API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14414128",
+		"_collection_link": "https://solar-water-596143.postman.co/workspace/test~518e67fc-b8e4-4bbb-a147-16ef1023d131/collection/14414128-801dcf12-d302-4e09-a518-e7e97210c8c0?action=share&source=collection_link&creator=14414128"
+	},
+	"item": [
+		{
+			"name": "Basic Search - Org 1 (no filters)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/employees/search?company_id=1&page=1&page_size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"search"
+					],
+					"query": [
+						{
+							"key": "company_id",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with status filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/employees/search?company_id=1&page=1&page_size=10&status=active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"search"
+					],
+					"query": [
+						{
+							"key": "company_id",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with multiple status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/employees/search?company_id=1&page=1&page_size=10&status=active&status=terminated",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"search"
+					],
+					"query": [
+						{
+							"key": "company_id",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "active"
+						},
+						{
+							"key": "status",
+							"value": "terminated"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with location and department",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/employees/search?company_id=1&page=1&page_size=10&location=London&department=Engineering",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"search"
+					],
+					"query": [
+						{
+							"key": "company_id",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						},
+						{
+							"key": "location",
+							"value": "London"
+						},
+						{
+							"key": "department",
+							"value": "Engineering"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with all filters + pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/employees/search?company_id=1&page=1&page_size=10&status=active&location=Bangalore&department=HR&position=Manager&page=2&page_size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"employees",
+						"search"
+					],
+					"query": [
+						{
+							"key": "company_id",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "active"
+						},
+						{
+							"key": "location",
+							"value": "Bangalore"
+						},
+						{
+							"key": "department",
+							"value": "HR"
+						},
+						{
+							"key": "position",
+							"value": "Manager"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
