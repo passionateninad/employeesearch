@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./test.db:/app/test.db      # 🔁 mounts your DB into the container
+      - ./test.db:/app/test.db      # mounts your DB into the container
     environment:
       - PYTHONPATH=/app
     restart: unless-stopped

@@ -25,7 +25,8 @@ def is_rate_limited(client_ip: str) -> bool:
 
 # FastAPI middleware
 async def rate_limiter_middleware(request: Request, call_next):
-    client_ip = request.client.host
+    client_ip = request.client.host if request.client else "test-client"
+
     if is_rate_limited(client_ip):
         return JSONResponse(
             status_code=429,

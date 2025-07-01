@@ -1,0 +1,101 @@
+{
+  "info": {
+    "_postman_id": "e02bfa42-f8c0-4f0e-b9b1-employee-api-search",
+    "name": "Employee Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Basic Search - Org 1 (no filters)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/search?company_id=1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"],
+          "query": [
+            { "key": "company_id", "value": "1" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search with status filter",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/search?company_id=1&status=active",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"],
+          "query": [
+            { "key": "company_id", "value": "1" },
+            { "key": "status", "value": "active" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search with multiple status",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/search?company_id=1&status=active&status=terminated",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"],
+          "query": [
+            { "key": "company_id", "value": "1" },
+            { "key": "status", "value": "active" },
+            { "key": "status", "value": "terminated" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search with location and department",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/search?company_id=1&location=London&department=Engineering",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"],
+          "query": [
+            { "key": "company_id", "value": "1" },
+            { "key": "location", "value": "London" },
+            { "key": "department", "value": "Engineering" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search with all filters + pagination",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/search?company_id=1&status=active&location=Bangalore&department=HR&position=Manager&page=2&page_size=10",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["search"],
+          "query": [
+            { "key": "company_id", "value": "1" },
+            { "key": "status", "value": "active" },
+            { "key": "location", "value": "Bangalore" },
+            { "key": "department", "value": "HR" },
+            { "key": "position", "value": "Manager" },
+            { "key": "page", "value": "2" },
+            { "key": "page_size", "value": "10" }
+          ]
+        }
+      }
+    }
+  ]
+}
